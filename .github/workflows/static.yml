@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Electronic Voting Machine</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(to right, #4caf50, #81c784);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            color: #fff;
+        }
+        header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            line-height: 1.6;
+            text-align: center;
+        }
+        .login-form {
+            background: #ffffff;
+            color: #333;
+            padding: 30px 20px;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            width: 90%;
+            max-width: 400px;
+            text-align: center;
+        }
+        input[type="text"], input[type="password"] {
+            width: calc(100% - 20px);
+            padding: 12px;
+            margin: 15px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+        button {
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(to right, #4caf50, #388e3c);
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background 0.3s;
+        }
+        button:hover {
+            background: #2e7d32;
+        }
+        .error {
+            color: red;
+            font-weight: bold;
+        }
+        footer {
+            margin-top: 20px;
+            font-size: 0.9rem;
+        }
+        .details {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: justify;
+            padding: 20px;
+            background: #f4f4f4;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            max-width: 800px;
+            width: 100%;
+        }
+        .details h1 {
+            color: #2196f3;
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        .details p {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            margin-bottom: 20px;
+            color: #333;
+        }
+        .details ol {
+            font-size: 1.1rem;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        .details ol li {
+            margin-bottom: 10px;
+            padding-left: 10px;
+            list-style-position: inside;
+        }
+        .how-to-use {
+            background: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            max-width: 800px;
+            width: 100%;
+            margin-bottom: 20px;
+        }
+        .how-to-use h2 {
+            color: #388e3c;
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+        }
+        .back-button {
+            padding: 12px 30px;
+            background: linear-gradient(to right, #388e3c, #4caf50);
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 1.1rem;
+            transition: background 0.3s;
+            margin-top: 20px;
+            cursor: pointer;
+            border: none;
+        }
+        .back-button:hover {
+            background: #2e7d32;
+        }
+    </style>
+    <script>
+        function validateLogin(event) {
+            event.preventDefault();
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            if (username === '8N' && password === '99887766') {
+                document.querySelector('.login-form').style.display = 'none';
+                document.querySelector('.details').style.display = 'flex';
+            } else {
+                const error = document.getElementById('error');
+                error.textContent = 'Invalid username or password. Please try again.';
+            }
+        }
+
+        function goBack() {
+            document.querySelector('.details').style.display = 'none';
+            document.querySelector('.login-form').style.display = 'block';
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <h1>Welcome to the Electronic Voting Machine</h1>
+        <p>Discover how modern technology is transforming the way we vote securely and efficiently.</p>
+    </header>
+    <div class="login-form">
+        <form onsubmit="validateLogin(event)">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" placeholder="Enter Username" required>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" placeholder="Enter Password" required>
+            <button type="submit">Login</button>
+            <p id="error" class="error"></p>
+        </form>
+    </div>
+    <div class="details">
+        <h1>How to Build an Electronic Voting Machine</h1>
+        <p>The electronic voting machine uses modern microcontroller technology to collect and count votes. The steps to build it are as follows:</p>
+        <ol>
+            <li>Set up your ESP8266 board with the necessary libraries.</li>
+            <li>Connect the GPIO pins to buttons for each candidate.</li>
+            <li>Write code to capture button presses and count votes securely.</li>
+            <li>Set up a web server using the ESP8266 to display real-time results.</li>
+            <li>Ensure the system is secure and prevents unauthorized access.</li>
+        </ol>
+        <div class="how-to-use">
+            <h2>How to Use:</h2>
+            <p>Upload this code to your ESP8266.</p>
+            <p>Connect to the ESP8266's Wi-Fi network with the SSID "votingmechine" and password "evmesp82".</p>
+            <p>Access the login page via the ESP8266's IP address in a web browser.</p>
+            <p>Enter the correct password (11223344) to view the voting results.</p>
+            <p>Use the buttons to vote for candidates, and the results will be updated accordingly.</p>
+        </div>
+        <button onclick="goBack()" class="back-button">Go Back</button>
+    </div>
+    <footer>
+        &copy; 2025 Electronic Voting Machine System. All rights reserved.
+    </footer>
+</body>
+</html>
